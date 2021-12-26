@@ -1,0 +1,104 @@
+body {
+	background-color: #000000;
+	color: #fff;
+}
+
+#cafenav {
+	background-color: #0B7214 !important;
+}
+
+#cafenav > a {
+	color: #FFF;
+	font-size: 3vw; 
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.justify-content-center {
+	text-align: center;
+}
+
+.highlight1 {
+	font-size: 2vw; 
+	/*background-color: #EFA91B;*/
+	color: #30f678;
+	font-weight: bold;
+}
+
+.highlight2 {
+	font-size: 2vw; 
+	/*background-color: #EFA91B;*/
+	color: #c2479e;
+	font-weight: bold;
+}
+
+.navbar {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.category {
+	font-size: 2vw; 
+	/*background-color: #EFA91B;*/
+	color: #fffc00;
+	font-weight: bold;
+}
+
+.categoryedit {
+	font-size: 14px; 
+	/*background-color: #EFA91B;*/
+	color: #fffc00;
+	font-weight: bold;
+}
+
+.container{
+	max-width: 100%;
+	margin-top: 10px;
+}
+
+.item {
+	font-size: 2vw;
+	color: #fff;
+}
+
+.itemedit {
+	font-size: 12px;
+	color: #fff;
+}
+
+.itemedit > input[type="checkbox"] {
+	vertical-align: middle;
+	transform: scale(1);
+	colot: #fff;
+}
+
+.item2 {
+	font-size: 2vw;
+	color: #f900ff;
+}
+
+.price {
+	font-size: 2vw;
+	color: #57c247;
+}
+
+table tr td:nth-child(2) {
+	padding-left: 5px;
+}
+
+table tr td {
+	border-bottom: 2px dotted #ddd;
+}
+
+input[type="checkbox"] {
+	vertical-align: middle;
+	transform: scale(1.5);
+}
+.submitrow {
+	align-content: center;
+}
+
+.successmessage {
+	color: #fff;
+}

@@ -3,17 +3,17 @@
 		{
 			"menuType": "Appetizer",
 			"menuItem": "Medu Vadai(2 pieces)",
-			"menuPrice": "$15"
+			"menuPrice": "$5"
 		},
 		{
 			"menuType": "Dish",
 			"menuItem": "Parotta Korma",
-			"menuPrice": "$16"
+			"menuPrice": "$6"
 		},
 			{
 			"menuType": "Rice Dish",
 			"menuItem": "Veg Parotta Korma",
-			"menuPrice": "$16"
+			"menuPrice": "$6"
 		}
 	]
 }

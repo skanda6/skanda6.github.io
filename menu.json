@@ -9,6 +9,11 @@
 			"menuType": "Dish",
 			"menuItem": "Parotta Korma",
 			"menuPrice": "$6"
+		},
+			{
+			"menuType": "Rice Dish",
+			"menuItem": "Veg Parotta Korma",
+			"menuPrice": "$6"
 		}
 	]
 }

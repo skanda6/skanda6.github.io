@@ -1,2 +1,2 @@
 # basic
-Basic project
+Project for maintaining kitchen menu items

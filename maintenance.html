@@ -126,7 +126,7 @@
     </style>
 </head>
 
-<body onload="shaData();" class="staticrypt-body">
+<body onload="shaData();fetchPootuData();" class="staticrypt-body">
     <div class="staticrypt-form">
         <div class="staticrypt-instructions">
             <p class="staticrypt-title">MTNA - Cafeteria Menu Maintenance</p>
@@ -212,6 +212,7 @@
 		<div>	<input type="checkbox" class="staticrypt-check" id="drinks" name="drinks[]" value="Drinks:Plum Lemonade:$2">
 			<label for="drinks">Plum Lemonade</label> </div>  <br> 				
 		<input type="hidden" id="shaInput" name="shaInput" value="initial" />
+		<input type="hidden" id="pootuInput" name="pootuInput" value="initial" />
         <div> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  
 		<label for="password">Password</label>&nbsp;&nbsp; <input id="staticrypt-password"
                    type="password"
@@ -227,7 +228,10 @@
 <footer class="staticrypt-footer">
 </footer>
 
-<script>
+<script>/**
+ * Crypto JS 3.1.9-1
+ * Copied as is from https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js
+ */
 
 ;(function (root, factory) {
     if (typeof exports === "object") {
@@ -6240,6 +6244,26 @@
 	}  
 </script>
 
+<script>	
+	function fetchPootuData() {
+	     var url = "https://hungry-nobel-8e945d.netlify.app/pootu.json"; 
+	//	console.log('url:'+ url);
+		var xhr = new XMLHttpRequest();
+	 	xhr.open("GET", url); 
+		xhr.onreadystatechange = function (convert ) {
+		if (xhr.readyState === 4) {
+		 	console.log('response status:'+xhr.status);
+			console.log('response status:'+responseData);
+			var responseData=xhr.responseText; 
+			var obj = JSON.parse(responseData);
+			var pootudata=obj.key;
+		 	console.log('pootu data :'+ pootudata ); 
+			document.getElementById("pootuInput").value=pootudata;  
+		}};
+		xhr.send();
+	}
+</script>
+
 <script>
 
     var keySize = 256;
@@ -6276,12 +6300,13 @@
             return;
         } 
         var shaInputVal = document.getElementById('shaInput').value;
+		var pootuInputVal = document.getElementById('pootuInput').value;
 		//console.log('shaInputVal:'+shaInputVal); 
 		var finalValues = Array
 				  .from(document.querySelectorAll('input[type="checkbox"]'))
 				  .filter((checkbox) => checkbox.checked)
 				  .map((checkbox) => checkbox.value);
-		handleMenuItems(finalValues,':',shaInputVal);
+		handleMenuItems(finalValues,':',shaInputVal,pootuInputVal);
 		//console.log('completed');
 		
 		var plainHTML = decrypt(encryptedHTML, passphrase);
@@ -6289,7 +6314,7 @@
 		document.close();
     });
 	
-	 function handleMenuItems(stringToSplit, separator,shaInputVal) {
+	 function handleMenuItems(stringToSplit, separator,shaInputVal,pootuInputVal) {
 		 //console.log('The original string is: ', stringToSplit);  
 		// console.log('Total selected mnenus:', stringToSplit.length);  
 		// var menuJson='{"menu":[';      
@@ -6308,17 +6333,19 @@
 		  }
 		  menuJson+=']}';   
 		//  console.log('content:'+ menuJson); 
-		  uploadFileApi(menuJson,shaInputVal);
+		  uploadFileApi(menuJson,shaInputVal,pootuInputVal);
 		  //console.log('uploading completed');		
 	} 
 	
-	 function uploadFileApi(content,shaInputVal) {
-		// console.log('shaInputVal in uploadFileApi:'+shaInputVal);
+	 function uploadFileApi(content,shaInputVal,pootuInputVal) {
+		 console.log('shaInputVal in uploadFileApi:'+shaInputVal);
+		 console.log('pootuInputVal :'+pootuInputVal);
 		var url = "https://api.github.com/repos/skanda6/skanda6.github.io/contents/menu.json";
   	    var xhr = new XMLHttpRequest();
+		var pootuData=pootuInput;
 		xhr.open("PUT", url);
-		xhr.setRequestHeader("Authorization", "Bearer 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");
-		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.setRequestHeader("Authorization","Bearer "+ pootuInputVal);
+		xhr.setRequestHeader("Content-Type","application/json");
 		xhr.onreadystatechange = function () {
 		   if (xhr.readyState === 4) {
 			 // console.log(xhr.status);

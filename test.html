@@ -3,10 +3,17 @@
     <meta charset="utf-8">
     <title>MTNA - Cafeteria Menu</title>	 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	  <link rel="stylesheet" href="javascript:document.location.hostname+'/css/bootstrap.min.css'"/> 
-	  <link rel="stylesheet" href="javascript:document.location.hostname+'/css/cafe.css'"/>
-    
-  </head>
+	  <link rel="stylesheet" href="javascript:getLocation()+'/css/bootstrap.min.css'"/> 
+	  <link rel="stylesheet" href="javascript:getLocation()+'/css/cafe.css'"/>    
+	  
+	  <script>
+		  function getLocation() {
+			var loc = window.location;
+			console.log('location:'+ loc); 
+			return loc.hostname;
+		  }
+	  </script>
+   </head>
   <body>
     <h1>Welcome World</h1>
   </body>

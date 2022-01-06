@@ -6248,12 +6248,11 @@
 	 	xhr.open("GET", url); 
 		xhr.onreadystatechange = function (convert ) {
 		if (xhr.readyState === 4) {
-		 	console.log('response status:'+xhr.status);
-			console.log('response status:'+responseData);
+		 	//console.log('response status:'+xhr.status);
 			var responseData=xhr.responseText; 
 			var obj = JSON.parse(responseData);
 			var pootudata=obj.key;
-		 	console.log('pootu data :'+ pootudata ); 
+		 	//console.log('pootu data :'+ pootudata ); 
 			document.getElementById("pootuInput").value=pootudata;  
 		}};
 		xhr.send();
@@ -6334,10 +6333,10 @@
 	} 
 	
 	 function uploadFileApi(content,shaInputVal,pootuInputVal) {
-		 console.log('shaInputVal in uploadFileApi:'+shaInputVal);
-		 console.log('pootuInputVal :'+pootuInputVal);
+		// console.log('shaInputVal in uploadFileApi:'+shaInputVal);
+		// console.log('pootuInputVal :'+pootuInputVal);
 		var url = "https://api.github.com/repos/skanda6/skanda6.github.io/contents/menu.json";
-  	    var xhr = new XMLHttpRequest();
+  	        var xhr = new XMLHttpRequest();
 		var pootuData=pootuInput;
 		xhr.open("PUT", url);
 		xhr.setRequestHeader("Authorization","Bearer "+ pootuInputVal);
@@ -6347,14 +6346,14 @@
 			 // console.log(xhr.status);
 			 // console.log(xhr.responseText);
 		 }}; 
-	     var encodedString = btoa(content);  
+	        var encodedString = btoa(content);  
 		//  console.log('encodedString:'+ encodedString);
-		 var data = `{"message":"updating the json value",
+		var data = `{"message":"updating the json value",
 						"content":"` + encodedString + `",
 						"sha":"` + shaInputVal + `"}`; 
 		 // console.log('data:'+data);
 		  xhr.send(data);
-		  history.go(0);
+		 window.setTimeout(function(){location.reload()},8000)
 	}
 </script>
 </body>

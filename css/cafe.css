@@ -103,3 +103,6 @@ input[type="checkbox"] {
 	color: #fff;
 }
 
+.h1, h1 {
+    font-size: 4rem;
+}

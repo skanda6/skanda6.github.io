@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MTNA - Cafeteria Menu</title>	 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 <link rel="stylesheet" href="css/bootstrap.min.css"/> 
+	 <link rel="stylesheet" href="css/cafe.css"/>
+         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+	 <meta HTTP-equiv="refresh" content="60; URL=cafe.html" /> 
+	 <style type="text/css">  			
+			table tr td .emptycolumn {
+				border-bottom: 2px; #ddd;
+			} 
+		</style>
+	 <script>
+	
+	function fetchData() {
+	 	var url = "https://mtna.netlify.app/menu.json"; 
+	//	console.log('url:'+ url);
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", url);
+		xhr.onreadystatechange = function (convert ) {
+		if (xhr.readyState === 4) {
+		//	console.log('response status:'+xhr.status);
+			var responseData=xhr.responseText;
+		//	console.log('response status:'+responseData);
+			var obj = JSON.parse(responseData);
+		//	console.log('obj length :'+ obj.length);
+			var total=extractTotalItems(obj);
+		//	console.log('total:'+ total); 
+		    extractAppetizerItems(obj.menu,total);
+		    extractDishItems(obj.menu,total);
+		    extractRiceDishItems(obj.menu,total); 
+		}};
+		xhr.send();
+	}
+	
+	function extractTotalItems(obj) {
+			var tempTotal=obj.total;
+			return tempTotal;
+	}
+	 
+	 function extractAppetizerItems(obj,total) {
+		var appetizerHtml='<div><table><tr><td colspan="2" class="category">Appetizers &amp; Snacks</td></tr>';
+		var menuPrefix='<tr><td class="item">';
+		var menuMiddle='</td><td class="price">';
+		var menuSuffix='</td></tr>';	
+		for (var i = 0; i < total; i++) {
+			var menuType=new String(obj[i].menuType);
+			var menuItem=obj[i].menuItem;
+			var menuPrice=obj[i].menuPrice;
+			/*console.log('menuType:'+ menuType
+			             + ' menuItem:'+ menuItem
+						 + ' menuPrice:'+ menuPrice);  */
+			if (menuType=='Appetizer') {
+				appetizerHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;			
+			} 
+		}  
+		 appetizerHtml+='</table></div>'; 
+		 /* console.log('appetizerHtml:'+appetizerHtml);  */
+		 document.getElementById("appetizerHtml").innerHTML=appetizerHtml; 
+	}
+	
+	 function extractDishItems(obj,total) {
+		var dishHtml='<div><table><tr><td colspan="2" class="category">Main Dishes</td></tr>';
+		var menuPrefix='<tr><td class="item">';
+		var menuMiddle='</td><td class="price">';
+		var menuSuffix='</td></tr>';	
+		for (var i = 0; i < total; i++) {
+			var menuType=new String(obj[i].menuType);
+			var menuItem=obj[i].menuItem;
+			var menuPrice=obj[i].menuPrice; 
+			if (menuType=='Dish') { 
+				dishHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;			
+			} 
+		} 
+		 dishHtml+='</table></div>';  
+		/*  console.log('dishHtml:'+dishHtml);  */
+		 document.getElementById("dishHtml").innerHTML=dishHtml; 
+	}
+	
+	function extractRiceDishItems(obj,total) {
+		var riceDishHtml='<div><table><tr><td colspan="2" class="category">Rice Dishes</td></tr>';
+		var drinkHtml='<tr><td colspan="2" class="category">Drinks</td></tr>';
+		 
+		var menuPrefix='<tr><td class="item">';
+		var menuMiddle='</td><td class="price">';
+		var menuSuffix='</td></tr>';	
+		var emptyRow='<tr><td colspan="2" class="category"></br></td></tr>'; 
+		
+		for (var i = 0; i < total; i++) {
+			var menuType=new String(obj[i].menuType);
+			var menuItem=obj[i].menuItem;
+			var menuPrice=obj[i].menuPrice;
+			if (menuType=='RiceDish') {
+				riceDishHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;			
+			} else if (menuType=='Drinks') {
+				drinkHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;
+			}
+		}  
+		 riceDishHtml+=emptyRow+drinkHtml+'</table></div>';    
+		 document.getElementById("riceDishHtml").innerHTML=riceDishHtml; 
+	}
+	</script>
+	
+</head>
+<body  onload="fetchData();" >  
+	<div class="container">
+		<div class="row align-items-top">
+		 	<div>
+				<img src="images/leftpattern-3.png" width="100%"/>
+			</div>  
+			
+			<div> 
+					<div><br> 
+						<h1 style="color:orange"> MTNA kitchen menu <h2> </div>
+					<table> 
+						 <tr><td valign="top"><label id="appetizerHtml"></label> </td> 
+					 	 <td class="emptycolumn"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
+						 <td valign="top"><label id="dishHtml"></label> </td>  
+					     <td class="emptycolumn"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>  
+						 <td valign="top"><label id="riceDishHtml"></label> </td></tr> 
+					</table>
+			</div>  
+		</div>
+	</div>	
+</body>		
+
+</html>

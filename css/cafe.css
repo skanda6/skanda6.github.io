@@ -39,7 +39,7 @@ body {
 }
 
 .category {
-	font-size: 3vw; 
+	font-size: 2vw; 
 	/*background-color: #EFA91B;*/
 	color: #fffc00;
 	font-weight: bold;
@@ -79,7 +79,7 @@ body {
 }
 
 .price {
-	font-size: 2.5vw;
+	font-size: 2vw;
 	color: #57c247;
 }
 

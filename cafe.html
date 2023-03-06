@@ -62,7 +62,7 @@
 		 document.getElementById("appetizerHtml").innerHTML=appetizerHtml; 
 	}
 	
-	 function extractDishItems(obj,total) {
+	/* function extractDishItems(obj,total) {
 		var dishHtml='<div><table><tr><td colspan="2" class="category">Main Dishes</td></tr>';
 		var menuPrefix='<tr><td class="item">';
 		var menuMiddle='</td><td class="price">';
@@ -75,8 +75,30 @@
 				dishHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;			
 			} 
 		} 
-		 dishHtml+='</table></div>';  
-		/*  console.log('dishHtml:'+dishHtml);  */
+		 dishHtml+='</table></div>';   
+		 document.getElementById("dishHtml").innerHTML=dishHtml; 
+	}*/
+	
+	function extractDishItems(obj,total) {
+		var dishHtml='<div><table><tr><td colspan="2" class="category">Rice Dishes</td></tr>';
+		var extraHtml='<tr><td colspan="2" class="category">Extra items</td></tr>';
+		 
+		var menuPrefix='<tr><td class="item">';
+		var menuMiddle='</td><td class="price">';
+		var menuSuffix='</td></tr>';	
+		var emptyRow='<tr><td colspan="2" class="category"></br></td></tr>'; 
+		
+		for (var i = 0; i < total; i++) {
+			var menuType=new String(obj[i].menuType);
+			var menuItem=obj[i].menuItem;
+			var menuPrice=obj[i].menuPrice;
+			if (menuType=='Dish') {
+				dishHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;			
+			} else if (menuType=='Extra') {
+				extraHtml+=menuPrefix+menuItem+menuMiddle+menuPrice+menuSuffix;
+			}
+		}  
+		 dishHtml+=emptyRow+extraHtml+'</table></div>';    
 		 document.getElementById("dishHtml").innerHTML=dishHtml; 
 	}
 	

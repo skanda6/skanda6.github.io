@@ -117,12 +117,10 @@
 	function extractRiceDishItems(obj,total) {
 		var riceDishHtml='<div><table><tr><td colspan="2" class="category">Rice Dishes</td></tr>';
 		var drinkHtml='<tr><td colspan="2" class="category">Drinks</td></tr>';
-		 
 		var menuPrefix='<tr><td class="item">';
 		var menuMiddle='</td><td class="price">';
 		var menuSuffix='</td></tr>';	
-		var emptyRow='<tr><td colspan="2" class="category"></br></td></tr>'; 
-		
+		var emptyRow='<tr><td colspan="2" class="category"></br></td></tr>'; 		
 		for (var i = 0; i < total; i++) {
 			var menuType=new String(obj[i].menuType);
 			var menuItem=obj[i].menuItem;
@@ -146,7 +144,7 @@
 				<img src="images/leftpattern-3.png" width="100%"/>
 			</div>  -->
 			<div>
-				 <div class="col col3">Lorem</div>
+				 <div class="col col3">&nbsp;&nbsp;</div>
 			</div>
 			<div> 
 					<div>

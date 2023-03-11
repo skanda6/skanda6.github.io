@@ -9,9 +9,21 @@
          <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 	 <meta HTTP-equiv="refresh" content="60; URL=cafe.html" /> 
 	 <style type="text/css">  			
-			table tr td .emptycolumn {
+		table tr td .emptycolumn {
 				border-bottom: 2px; #ddd;
-			} 
+		 } 
+		 .col {
+                    margin-right: 4%;
+                    float: left;
+                    min-height: 1px;
+                  /* give a small space - practiced by Bootstrap framework as well */
+                 }
+               .col:last-child {
+                  margin-right: 0;
+               }
+               .col3 {
+                   width: 21.98%;
+                }
 		</style>
 	 <script>
 	
@@ -133,7 +145,9 @@
 		 <!--	<div>
 				<img src="images/leftpattern-3.png" width="100%"/>
 			</div>  -->
-			
+			<div>
+				 <div class="col col3">Lorem</div>
+			</div>
 			<div> 
 					<div>
 						<h1 style="color:orange"> MTNA kitchen menu <h2> </div>

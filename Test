@@ -1,0 +1,167 @@
+<!doctype html>
+<html class="staticrypt-html">
+<head>
+    <meta charset="utf-8">
+    <title>MTNA Temple - Cafeteria Menu Maintenance</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="refresh" content="900; URL=maintenance.html" /> 
+
+    <style>
+        .staticrypt-hr { margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee; }
+        .staticrypt-page { width: 360px; padding: 8% 0 0; margin: auto; box-sizing: border-box; }
+        .staticrypt-form { position: relative; z-index: 1; background: #FFFFFF; margin: 0 auto 100px; padding: 45px; text-align: left; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+        .staticrypt-check { outline: 0; background: #f2f2f2; width: 5%; border: 0; margin: 0 0 15px; padding: 0px; box-sizing: border-box; font-size: 14px; text-align: left; }
+        .staticrypt-html { height: 100%; }
+        .staticrypt-body { margin-bottom: 1em; background: linear-gradient(to left, #76b852, #8DC26F); font-family: "Arial", sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .staticrypt-instructions { margin-top: -1em; margin-bottom: 1em; }
+        .staticrypt-title { font-size: 1.5em; text-align: left; }
+        .status-message { font-size: 12px; margin-left: 10px; font-style: italic; color: #666; }
+    </style>
+</head>
+
+<body onload="shaData(); fetchPootuData(); initMenuListeners();" class="staticrypt-body">
+    <div class="staticrypt-form">
+        <div class="staticrypt-instructions">
+            <p class="staticrypt-title">MTNA - Cafeteria Menu Maintenance</p>
+        </div>
+
+        <hr class="staticrypt-hr"> 
+        <!-- Removed standard action/method to prevent whole form submissions -->
+        <form id="staticrypt-form" onsubmit="return false;">  
+
+            <h2>Appetizer</h2> <br>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="aloo_bonda" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
+                <label for="aloo_bonda">Aloo Bonda</label><span class="status-message"></span>
+            </div> 		
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="banana_fry" name="appetizer[]" value="Appetizer:Banana Rava Fry (4pcs):$5">
+                <label for="banana_fry">Banana Rava Fry</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="onion_pakoda" name="appetizer[]" value="Appetizer:Onion Pakoda:$5">
+                <label for="onion_pakoda">Onion Pakoda</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:left;">
+                <input type="checkbox" class="staticrypt-check" id="methu_vadai" name="appetizer[]" value="Appetizer:Medu Vadai(2 pieces):$5">
+                <label for="methu_vadai">Methu Vadai</label><span class="status-message"></span>
+            </div> 
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="paruppu_vadai" name="appetizer[]" value="Appetizer:Paruppu Vadai:$5">
+                <label for="paruppu_vadai">Paruppu Vadai</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="plantain_bajji" name="appetizer[]" value="Appetizer:Plantain Bajji(4 Pieces):$5">
+                <label for="plantain_bajji">Plantain Bajji(4 Pieces)</label><span class="status-message"></span>
+            </div>	
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="sambar_vadai" name="appetizer[]" value="Appetizer:Sambar Vadai:$6">
+                <label for="sambar_vadai">Sambar Vadai</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="thayir_vadai" name="appetizer[]" value="Appetizer:Thayir Vadai:$6">
+                <label for="thayir_vadai">Thayir Vadai</label><span class="status-message"></span>
+            </div> 
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="chilli_bhajji" name="appetizer[]" value="Appetizer:Chilli BHajji:$5">
+                <label for="chilli_bhajji">Chilli Bhajji</label><span class="status-message"></span>
+            </div> 
+
+            <h2>Desserts</h2> <br>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="ashoka_halwa" name="appetizer[]" value="Appetizer:Ashoka Halwa:$5">
+                <label for="ashoka_halwa">Ashoka Halwa</label><span class="status-message"></span>
+            </div> 	
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="carrot_halwa" name="appetizer[]" value="Appetizer:Carrot Halwa:$5">
+                <label for="carrot_halwa">Carrot Halwa</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="chocolate_kesari" name="appetizer[]" value="Appetizer:Chocolate Kesari:$4">
+                <label for="chocolate_kesari">Chocolate Kesari</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:left;">
+                <input type="checkbox" class="staticrypt-check" id="mango_kesari" name="appetizer[]" value="Appetizer:Mango Kesari:$4">
+                <label for="mango_kesari">Mango Kesari</label><span class="status-message"></span>
+            </div>
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="plain_kesari" name="appetizer[]" value="Appetizer:Plain Kesari:$4">
+                <label for="plain_kesari">Plain Kesari</label><span class="status-message"></span>
+            </div> 
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="pineapple_kesari" name="appetizer[]" value="Appetizer:Pineapple Kesari:$4">
+                <label for="pineapple_kesari">Pineapple Kesari</label><span class="status-message"></span>
+            </div> 
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="snacks" name="appetizer[]" value="Appetizer:Snacks:$5">
+                <label for="snacks">Snacks</label><span class="status-message"></span>
+            </div> 		
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="sweets" name="appetizer[]" value="Appetizer:Sweets:$6">
+                <label for="sweets">Sweets</label><span class="status-message"></span>
+            </div> 
+            <div style="text-align:right;">
+                <input type="checkbox" class="staticrypt-check" id="samosa" name="appetizer[]" value="Appetizer:Samosa (2 Piece):$5">
+                <label for="samosa">Samosa</label><span class="status-message"></span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Placeholder definitions for original background script components
+        function shaData() { console.log("shaData executed"); }
+        function fetchPootuData() { console.log("fetchPootuData executed"); }
+
+        // Initialize event observers across all existing checkboxes
+        function initMenuListeners() {
+            const checkboxes = document.querySelectorAll('.staticrypt-check');
+            checkboxes.forEach(box => {
+                box.addEventListener('change', function() {
+                    updateSingleItem(this);
+                });
+            });
+        }
+
+        // Asynchronously process a singular item value patch modification
+        function updateSingleItem(checkbox) {
+            const statusSpan = checkbox.parentElement.querySelector('.status-message');
+            if(statusSpan) statusSpan.textContent = " Saving...";
+
+            const payload = {
+                itemValue: checkbox.value,
+                isActive: checkbox.checked
+            };
+
+            // Replace 'update_item.php' or 'update_endpoint' with your actual server destination route URL
+            fetch('update_item.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network error encountered.');
+                return response.json();
+            })
+            .then(data => {
+                if(statusSpan) {
+                    statusSpan.textContent = " Saved";
+                    setTimeout(() => statusSpan.textContent = "", 2000);
+                }
+            })
+            .catch(error => {
+                console.error('Error handling backend save operation:', error);
+                if(statusSpan) {
+                    statusSpan.textContent = " Error saving change";
+                    statusSpan.style.color = "red";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

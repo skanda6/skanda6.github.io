@@ -12,6 +12,167 @@
 
     <style>
         .staticrypt-hr { margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee; }
+        .staticrypt-form { position: relative; z-index: 1; background: #FFFFFF; margin: 0 auto 100px; padding: 45px; text-align: left; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+        .staticrypt-html { height: 100%; }
+        .staticrypt-body { margin-bottom: 1em; background: linear-gradient(to left, #76b852, #8DC26F); font-family: "Arial", sans-serif; }
+        .staticrypt-title { font-size: 1.5em; text-align: left; }
+        
+        /* Layout & Toggle Button Styles */
+        .menu-item-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 6px 0; border-bottom: 1px dashed #f2f2f2; }
+        .item-label { font-weight: bold; flex-grow: 1; text-align: left; }
+        .item-actions { display: flex; align-items: center; gap: 12px; }
+        
+        .status-btn { 
+            border: none; 
+            padding: 8px 16px; 
+            cursor: pointer; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            border-radius: 4px; 
+            font-weight: bold;
+            transition: background 0.2s;
+            min-width: 110px;
+            text-align: center;
+        }
+        /* Active / Available State */
+        .status-btn.available { background: #4CAF50; color: white; }
+        .status-btn.available:hover { background: #43A047; }
+        /* Inactive / Unavailable State */
+        .status-btn.unavailable { background: #e0e0e0; color: #666; }
+        .status-btn.unavailable:hover { background: #d5d5d5; }
+
+        .status-message { font-size: 11px; font-style: italic; color: #888; min-width: 50px; text-align: right; }
+    </style>
+</head>
+
+<body onload="shaData(); fetchPootuData();" class="staticrypt-body">
+    <div class="staticrypt-form">
+        <div class="staticrypt-instructions">
+            <p class="staticrypt-title">MTNA - Cafeteria Menu Maintenance</p>
+        </div>
+
+        <hr class="staticrypt-hr"> 
+        <form id="staticrypt-form" onsubmit="return false;">  
+
+            <h2>Appetizer</h2> <br>
+            
+            <div class="menu-item-row">
+                <span class="item-label">Aloo Bonda ($6)</span>
+                <div class="item-actions">
+                    <span class="status-message"></span>
+                    <!-- data-status stores current state. Class applies coloring. -->
+                    <button type="button" class="status-btn available" data-status="available" onclick="toggleAvailability(this, 'Appetizer:Aloo Bonda:$6')">Available</button>
+                </div>
+            </div>
+
+            <div class="menu-item-row">
+                <span class="item-label">Banana Rava Fry ($5)</span>
+                <div class="item-actions">
+                    <span class="status-message"></span>
+                    <button type="button" class="status-btn available" data-status="available" onclick="toggleAvailability(this, 'Appetizer:Banana Rava Fry (4pcs):$5')">Available</button>
+                </div>
+            </div>
+
+            <div class="menu-item-row">
+                <span class="item-label">Onion Pakoda ($5)</span>
+                <div class="item-actions">
+                    <span class="status-message"></span>
+                    <button type="button" class="status-btn unavailable" data-status="unavailable" onclick="toggleAvailability(this, 'Appetizer:Onion Pakoda:$5')">Unavailable</button>
+                </div>
+            </div>
+
+            <h2>Desserts</h2> <br>
+            
+            <div class="menu-item-row">
+                <span class="item-label">Ashoka Halwa ($5)</span>
+                <div class="item-actions">
+                    <span class="status-message"></span>
+                    <button type="button" class="status-btn available" data-status="available" onclick="toggleAvailability(this, 'Appetizer:Ashoka Halwa:$5')">Available</button>
+                </div>
+            </div> 	
+
+            <div class="menu-item-row">
+                <span class="item-label">Carrot Halwa ($5)</span>
+                <div class="item-actions">
+                    <span class="status-message"></span>
+                    <button type="button" class="status-btn unavailable" data-status="unavailable" onclick="toggleAvailability(this, 'Appetizer:Carrot Halwa:$5')">Unavailable</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        function shaData() { console.log("shaData executed"); }
+        function fetchPootuData() { console.log("fetchPootuData executed"); }
+
+        function toggleAvailability(buttonElement, itemValue) {
+            const statusSpan = buttonElement.parentElement.querySelector('.status-message');
+            
+            // 1. Determine next state
+            const currentStatus = buttonElement.getAttribute('data-status');
+            const nextStatus = (currentStatus === 'available') ? 'unavailable' : 'available';
+            
+            if (statusSpan) statusSpan.textContent = "Updating...";
+
+            // 2. Prep data payload
+            const payload = {
+                item: itemValue,
+                availability: nextStatus // Sends "available" or "unavailable"
+            };
+
+            // 3. Background server update
+            fetch('update_item.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network error.');
+                return response.json();
+            })
+            .then(data => {
+                // 4. Update UI styling instantly on success
+                buttonElement.setAttribute('data-status', nextStatus);
+                
+                if (nextStatus === 'available') {
+                    buttonElement.textContent = "Available";
+                    buttonElement.className = "status-btn available";
+                } else {
+                    buttonElement.textContent = "Unavailable";
+                    buttonElement.className = "status-btn unavailable";
+                }
+
+                if (statusSpan) {
+                    statusSpan.textContent = "Saved";
+                    setTimeout(() => statusSpan.textContent = "", 1500);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                if (statusSpan) {
+                    statusSpan.textContent = "Failed";
+                    statusSpan.style.color = "red";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+<!doctype html>
+<html class="staticrypt-html">
+<head>
+    <meta charset="utf-8">
+    <title>MTNA Temple - Cafeteria Menu Maintenance</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="refresh" content="900; URL=maintenance.html" /> 
+
+    <style>
+        .staticrypt-hr { margin-top: 20px; margin-bottom: 20px; border: 0; border-top: 1px solid #eee; }
         .staticrypt-page { width: 360px; padding: 8% 0 0; margin: auto; box-sizing: border-box; }
         .staticrypt-form { position: relative; z-index: 1; background: #FFFFFF; margin: 0 auto 100px; padding: 45px; text-align: left; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
         .staticrypt-check { outline: 0; background: #f2f2f2; width: 5%; border: 0; margin: 0 0 15px; padding: 0px; box-sizing: border-box; font-size: 14px; text-align: left; }

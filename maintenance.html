@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>MTNA Temple - Cafeteria Menu Maintenance</title>	
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <meta http-equiv="cache-control" content="max-age=0"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="0"/>
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
     <meta http-equiv="pragma" content="no-cache"/>
-	<meta HTTP-equiv="refresh" content="900; URL=maintenance.html" /> 
+    <meta http-equiv="refresh" content="900; URL=maintenance.html" /> 
 
     <style>
         .staticrypt-hr {
@@ -41,23 +41,24 @@
             background: #f2f2f2;
             width: 20%;
             border: 10px;
-			margin: 15px 0 15px;
+            margin: 15px 0 15px;
             padding: 30px;
             box-sizing: border-box;
             font-size: 14px;
-			text-align:center;
+            text-align: center;
         }
 		
-		.staticrypt-check{
+        .staticrypt-check {
             outline: 0;
             background: #f2f2f2;
             width: 5%;
             border: 0;
-			margin: 0 0 15px;
+            margin: 0 5px 15px 0;
             padding: 0px;
             box-sizing: border-box;
             font-size: 14px;
-			text-align:left;
+            text-align: left;
+            vertical-align: middle;
         }
 
         .staticrypt-form .staticrypt-decrypt-button {
@@ -72,7 +73,9 @@
             cursor: pointer;
         }
 
-        .staticrypt-form .staticrypt-decrypt-button:hover, .staticrypt-form .staticrypt-decrypt-button:active, .staticrypt-form .staticrypt-decrypt-button:focus {
+        .staticrypt-form .staticrypt-decrypt-button:hover, 
+        .staticrypt-form .staticrypt-decrypt-button:active, 
+        .staticrypt-form .staticrypt-decrypt-button:focus {
             background: #43A047;
         }
 
@@ -82,7 +85,7 @@
 
         .staticrypt-body {
             margin-bottom: 1em;
-            background: #76b852; /* fallback for old browsers */
+            background: #76b852; 
             background: -webkit-linear-gradient(right, #76b852, #8DC26F);
             background: -moz-linear-gradient(right, #76b852, #8DC26F);
             background: -o-linear-gradient(right, #76b852, #8DC26F);
@@ -99,66 +102,130 @@
 
         .staticrypt-title {
             font-size: 1.5em;
-			text-align: left;
+            text-align: left;
         }
 
-        .staticrypt-footer {
-            position: fixed;
-            height: 5px;
-            font-size: 16px;
-            padding: 2px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin-bottom: 0;
+        .menu-item-row {
+            text-align: left;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
 
-        .staticrypt-footer p {
-            margin: 2px;
-            text-align: center;
-            float: right;
+        .menu-item-row label {
+            vertical-align: middle;
+            cursor: pointer;
         }
 
-        .staticrypt-footer a {
-            text-decoration: none;
+        /* Status Label Styles */
+        .status-indicator {
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .status-available {
+            color: #2e7d32;
+        }
+
+        .status-unavailable {
+            color: #c62828;
+            font-style: italic;
         }
     </style>
 </head>
 
-<body onload="shaData();fetchPootuData();" class="staticrypt-body">
+<body onload="shaData(); fetchPootuData(); initMenuListeners();" class="staticrypt-body">
     <div class="staticrypt-form">
         <div class="staticrypt-instructions">
             <p class="staticrypt-title">MTNA - Cafeteria Menu Maintenance</p>
             <p></p>
         </div>
 
-		<hr class="staticrypt-hr"> 
-        <form id="staticrypt-form" action="#" method="post">  
-<!-- The form blocks the traditional submit behavior -->
-<form id="staticrypt-form" onsubmit="return false;"> 
-		<h2>Appetizer</h2> <br>
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
-			<label for="appetizer">Aloo Bonda</label>  </div> 		
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Banana Rava Fry (4pcs):$5">
-			<label for="appetizer">Banana Rava Fry</label>  </div>
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Onion Pakoda:$5">
-			<label for="appetizer">Onion Pakoda</label>  </div>
-		<!--<div css="text-align:left;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Mangalore Buns(2 pieces):$6">
-			<label for="appetizer">Mangalore Buns (2 Piece)</label>  </div> -->
-		<!--<div css="text-align:left;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Mangalore Buns(1 piece):$3">
-			<label for="appetizer">Mangalore Buns (1 Piece)</label>  </div> -->
-		<div css="text-align:left;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Medu Vadai(2 pieces):$5">
-			<label for="appetizer">Methu Vadai</label>  </div> 
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Paruppu Vadai:$5">
-			<label for="appetizer">Paruppu Vadai</label>  </div>
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Plantain Bajji(4 Pieces):$5">
-			<label for="appetizer">Plantain Bajji(4 Pieces)</label>  </div>	
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Sambar Vadai:$6">
-			<label for="appetizer">Sambar Vadai</label>  </div>
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Thayir Vadai:$6">
-			<label for="appetizer">Thayir Vadai</label> 
-		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Chilli BHajji:$5">
-			<label for="appetizer">Chilli Bhajji</label> 
+        <hr class="staticrypt-hr"> 
+        
+        <form id="staticrypt-form" onsubmit="return false;"> 
+            <h2>Appetizer</h2> 
+            <br>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="aloo_bonda" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
+                <label for="aloo_bonda">Aloo Bonda</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div> 		
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="banana_fry" name="appetizer[]" value="Appetizer:Banana Rava Fry (4pcs):$5">
+                <label for="banana_fry">Banana Rava Fry</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="onion_pakoda" name="appetizer[]" value="Appetizer:Onion Pakoda:$5">
+                <label for="onion_pakoda">Onion Pakoda</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="methu_vadai" name="appetizer[]" value="Appetizer:Medu Vadai(2 pieces):$5">
+                <label for="methu_vadai">Methu Vadai</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div> 
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="paruppu_vadai" name="appetizer[]" value="Appetizer:Paruppu Vadai:$5">
+                <label for="paruppu_vadai">Paruppu Vadai</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="plantain_bajji" name="appetizer[]" value="Appetizer:Plantain Bajji(4 Pieces):$5">
+                <label for="plantain_bajji">Plantain Bajji(4 Pieces)</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>	
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="sambar_vadai" name="appetizer[]" value="Appetizer:Sambar Vadai:$6">
+                <label for="sambar_vadai">Sambar Vadai</label>  
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="thayir_vadai" name="appetizer[]" value="Appetizer:Thayir Vadai:$6">
+                <label for="thayir_vadai">Thayir Vadai</label> 
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+            
+            <div class="menu-item-row">	
+                <input type="checkbox" class="staticrypt-check" id="chilli_bhajji" name="appetizer[]" value="Appetizer:Chilli BHajji:$5">
+                <label for="chilli_bhajji">Chilli Bhajji</label> 
+                <span class="status-indicator status-unavailable">(Unavailable)</span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Toggles visual text states automatically when boxes change
+        function initMenuListeners() {
+            const checkboxes = document.querySelectorAll('.staticrypt-check');
+            checkboxes.forEach(box => {
+                box.addEventListener('change', function() {
+                    const row = this.closest('.menu-item-row');
+                    const indicator = row.querySelector('.status-indicator');
+                    
+                    if (this.checked) {
+                        indicator.textContent = '(Available)';
+                        indicator.className = 'status-indicator status-available';
+                    } else {
+                        indicator.textContent = '(Unavailable)';
+                        indicator.className = 'status-indicator status-unavailable';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
 		<h2>Desserts</h2> <br>
 		<div css="text-align:right;">	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Ashoka Halwa:$5">
 			<label for="appetizer">Ashoka Halwa</label>  </div> 	

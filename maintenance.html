@@ -131,6 +131,31 @@
             <p class="staticrypt-title">MTNA - Cafeteria Menu Maintenance</p>
             <p></p>
         </div>
+function initMenuListeners() {
+    const checkboxes = document.querySelectorAll('.staticrypt-check');
+    
+    checkboxes.forEach(box => {
+        box.addEventListener('change', function() {
+            const parentDiv = this.parentElement;
+            const statusSpan = parentDiv.querySelector('.status-message');
+            const label = parentDiv.querySelector('label');
+            
+            if (this.checked) {
+                // Item is Available
+                statusSpan.textContent = "— Available";
+                statusSpan.className = "status-message status-available";
+                label.className = "item-available";
+                // TODO: Call API to set item to true
+            } else {
+                // Item is Unavailable
+                statusSpan.textContent = "— Out of Stock";
+                statusSpan.className = "status-message status-unavailable";
+                label.className = "item-unavailable";
+                // TODO: Call API to set item to false
+            }
+        });
+    });
+}
 
         <hr class="staticrypt-hr"> 
         <form id="staticrypt-form" action="#" method="post">  

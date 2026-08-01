@@ -363,11 +363,7 @@
 <footer class="staticrypt-footer">
 </footer>
 
-<script> 
-
-// Existing CryptoJS and other scripts continue below (original content preserved)
-
-</script>
+<!-- CryptoJS and other original scripts would be here; preserved if needed -->
 
 <!-- Small UI script to convert checkboxes into Available / Unavailable toggles -->
 <script>
@@ -456,6 +452,65 @@
         transformToggles();
     }
 })();
+</script>
+
+<!-- Prevent normal form POST (which causes Netlify 404) and save locally instead -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('staticrypt-form');
+    if(!form) return;
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault(); // stop the browser from doing a real POST
+
+        // collect checked items grouped by field name
+        var checked = Array.prototype.slice.call(document.querySelectorAll('input.staticrypt-check'))
+            .filter(function(i){ return i.checked; });
+
+        var payload = { items: {}, password: '' };
+        checked.forEach(function(i){
+            var name = (i.name || '').replace(/\[\]$/,'');
+            if(!payload.items[name]) payload.items[name] = [];
+            payload.items[name].push(i.value);
+        });
+
+        var pw = document.getElementById('staticrypt-password');
+        if(pw) payload.password = pw.value;
+
+        // Store locally to avoid Netlify 404. Replace this with an AJAX call to your backend if available.
+        try{
+            localStorage.setItem('menuMaintenanceDraft', JSON.stringify({ ts: Date.now(), payload: payload }));
+            // Provide user feedback
+            alert('Saved locally. No page navigation occurred.');
+        }catch(err){
+            console.error('Failed to save draft', err);
+            alert('Could not save locally. See console for details.');
+        }
+    });
+
+    // Restore previous selections if present
+    try{
+        var saved = localStorage.getItem('menuMaintenanceDraft');
+        if(saved){
+            var obj = JSON.parse(saved).payload;
+            if(obj && obj.items){
+                Object.keys(obj.items).forEach(function(name){
+                    obj.items[name].forEach(function(val){
+                        var selector = 'input.staticrypt-check[name="' + name + '[]"][value="' + val.replace(/"/g,'\"') + '"]';
+                        var el = document.querySelector(selector);
+                        if(el) el.checked = true;
+                    });
+                });
+            }
+            if(obj && obj.password){
+                var pw = document.getElementById('staticrypt-password');
+                if(pw) pw.value = obj.password;
+            }
+        }
+    }catch(e){
+        console.warn('Could not restore draft', e);
+    }
+});
 </script>
 
 </body>

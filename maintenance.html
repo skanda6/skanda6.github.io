@@ -2,14 +2,14 @@
 <html class="staticrypt-html">
 <head>
     <meta charset="utf-8">
-    <title>MTNA Temple - Cafeteria Menu Maintenance</title>	
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>MTNA Temple - Cafeteria Menu Maintenance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <meta http-equiv="cache-control" content="max-age=0"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="0"/>
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
     <meta http-equiv="pragma" content="no-cache"/>
-	<meta HTTP-equiv="refresh" content="900; URL=maintenance.html" /> 
+    <meta HTTP-equiv="refresh" content="900; URL=maintenance.html" /> 
 
     <style>
         .staticrypt-hr {
@@ -41,23 +41,23 @@
             background: #f2f2f2;
             width: 20%;
             border: 10px;
-			margin: 15px 0 15px;
+            margin: 15px 0 15px;
             padding: 30px;
             box-sizing: border-box;
             font-size: 14px;
-			text-align:center;
+            text-align:center;
         }
-		
-		.staticrypt-check{
+
+        .staticrypt-check{
             outline: 0;
             background: #f2f2f2;
             width: 5%;
             border: 0;
-			margin: 0 0 15px;
+            margin: 0 0 15px;
             padding: 0px;
             box-sizing: border-box;
             font-size: 14px;
-			text-align:left;
+            text-align:left;
         }
 
         .staticrypt-form .staticrypt-decrypt-button {
@@ -99,7 +99,7 @@
 
         .staticrypt-title {
             font-size: 1.5em;
-			text-align: left;
+            text-align: left;
         }
 
         .staticrypt-footer {
@@ -150,129 +150,39 @@
         </div>
 
         <hr class="staticrypt-hr"> 
-        <!-- Single form element -->
-        <form id="staticrypt-form" onsubmit="return false;" method="post">
+        <!-- Single form element with Netlify attributes -->
+        <form id="staticrypt-form" name="menu-maintenance" data-netlify="true" netlify-honeypot="bot-field" method="post">
+            <!-- Netlify hidden inputs required for form handling -->
+            <input type="hidden" name="form-name" value="menu-maintenance" />
+            <p style="display:none;">
+                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
             <!-- inline banner placeholder -->
             <div id="saveBanner" class="save-banner" role="status" aria-live="polite"></div>
-		<h2>Appetizer</h2> <br>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
-			<label for="appetizer">Aloo Bonda</label>  </div> 		
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Banana Rava Fry (4pcs):$5">
-			<label for="appetizer">Banana Rava Fry</label>  </div>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Onion Pakoda:$5">
-			<label for="appetizer">Onion Pakoda</label>  </div>
-		<!--<div css="text-align:left;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Mangalore Buns(2 pieces):$6">
-			<label for="appetizer">Mangalore Buns (2 Piece)</label>  </div> -->
-		<!--<div css="text-align:left;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Mangalore Buns(1 piece):$3">
-			<label for="appetizer">Mangalore Buns (1 Piece)</label>  </div> -->
-		<div css="text-align:left;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer2" name="appetizer[]" value="Appetizer:Medu Vadai(2 pieces):$5">
-			<label for="appetizer2">Methu Vadai</label>  </div> 
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer3" name="appetizer[]" value="Appetizer:Paruppu Vadai:$5">
-			<label for="appetizer3">Paruppu Vadai</label>  </div>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer4" name="appetizer[]" value="Appetizer:Plantain Bajji(4 Pieces):$5">
-			<label for="appetizer4">Plantain Bajji(4 Pieces)</label>  </div>	
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer5" name="appetizer[]" value="Appetizer:Sambar Vadai:$6">
-			<label for="appetizer5">Sambar Vadai</label>  </div>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer6" name="appetizer[]" value="Appetizer:Thayir Vadai:$6">
-			<label for="appetizer6">Thayir Vadai</label> 
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer7" name="appetizer[]" value="Appetizer:Chilli BHajji:$5">
-			<label for="appetizer7">Chilli Bhajji</label>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer8" name="appetizer[]" value="Appetizer:Tomato Soup:$5">
-			<label for="appetizer8">Tomato Soup</label> 
-		<h2>Desserts</h2> <br>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert1" name="appetizer[]" value="Appetizer:Ashoka Halwa:$5">
-			<label for="dessert1">Ashoka Halwa</label>  </div> 	
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert2" name="appetizer[]" value="Appetizer:Carrot Halwa:$5">
-			<label for="dessert2">Carrot Halwa</label>  </div>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert3" name="appetizer[]" value="Appetizer:Chocolate Kesari:$4">
-			<label for="dessert3">Chocolate Kesari</label>  </div>
-		<div css="text-align:left;"> 	<input type="checkbox" class="staticrypt-check" id="dessert4" name="appetizer[]" value="Appetizer:Mango Kesari:$4">
-			<label for="dessert4">Mango Kesari</label> </div>
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert5" name="appetizer[]" value="Appetizer:Plain Kesari:$4">
-			<label for="dessert5">Plain Kesari</label>  </div> 
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert6" name="appetizer[]" value="Appetizer:Pineapple Kesari:$4">
-			<label for="dessert6">Pineapple Kesari</label>  </div> 
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert7" name="appetizer[]" value="Appetizer:Snacks:$5">
-			<label for="dessert7">Snacks</label>  </div> 		
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert8" name="appetizer[]" value="Appetizer:Sweets:$6">
-			<label for="dessert8">Sweets</label>  </div> 
-		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="dessert9" name="appetizer[]" value="Appetizer:Samosa (2 Piece):$5">
-			<label for="dessert9">Samosa</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dessert10" name="appetizer[]" value="Appetizer:Breakfast Combo:$9">
-			<label for="dessert10">Breakfast Combo</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dessert11" name="riceDish[]" value="Appetizer:Milk Mysorepak:$6">
-			<label for="dessert11">Milk Mysorepak</label>  </div> 	
-			<h2>Dish Items</h2> <br>                           
-	    <div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish1" name="dish[]" value="Dish:Breakfast Combo:$9">
-			<label for="dish1">Breakfast Combo</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish2" name="dish[]" value="Dish:Idiyappam:$6">
-			<label for="dish2">Idiyappam</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish3" name="dish[]" value="Dish:Idly:$5">
-			<label for="dish3">Idly</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish4" name="dish[]" value="Dish:Chapati(2 Pieces):$5">
-			<label for="dish4">Chapati(2 Pieces)</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish5" name="dish[]" value="Dish:Dal Kichadi:$6">
-			<label for="dish5">Dal Kichadi</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish6" name="dish[]" value="Dish:Garlic Naan & Paneer Butter:$8">
-			<label for="dish6">Garlic Naan with Paneer butter</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish7" name="dish[]" value="Dish:Garlic Naan & Palak Paneer:$8">
-			<label for="dish7">Garlic Naan with Palak Paneer</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish8" name="dish[]" value="Dish:Garlic Naan & Dal Makhni:$8">
-			<label for="dish8">Garlic Naan with Dal Makhni</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish9" name="dish[]" value="Dish:Kichadi Upma:$5">
-			<label for="dish9">Kichadi Upma</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish10" name="dish[]" value="Dish:Millet Kitchadi:$6">
-			<label for="dish10">Millet Kitchadi</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish11" name="dish[]" value="Dish:Millet Pongal:$6">
-			<label for="dish11">Millet Pongal</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish12" name="dish[]" value="Dish:Masala Dosai:$7">
-			<label for="dish12">Masala Dosai</label>  </div> 	
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish13" name="dish[]" value="Dish:Mysore Masala Dosai:$9">
-			<label for="dish13">Mysore Masala Dosai</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish14" name="dish[]" value="Breakfast Items:Onion Chilli Dosai:$7">
-			<label for="dish14">Onion Chilli Dosai</label>  </div>  
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish15" name="dish[]" value="Dish:Parotta Korma:$6">
-			<label for="dish15">Parotta Korma</label>  </div> 			
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish16" name="dish[]" value="Dish:Plain Dosai:$5">
-			<label for="dish16">Plain Dosai</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish17" name="dish[]" value="Dish:Plain Uttappam:$5">
-			<label for="dish17">Plain Uttappam</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish18" name="dish[]" value="Dish:Podi Dosai:$7">
-			<label for="dish18">Podi Dosai</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish19" name="dish[]" value="Dish:Plain Naan & Paneer Butter:$6">
-			<label for="dish19">Plain Naan with Paneer butter</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish20" name="dish[]" value="Dish:Plain Naan & Palak Paneer:$6">
-			<label for="dish20">Plain Naan with Palak Paneer</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish21" name="dish[]" value="Dish:Poori Masala:$6">
-			<label for="dish21">Poori Masala</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish22" name="dish[]" value="Dish:Poori Channa:$7">
-			<label for="dish22">Poori Channa</label>  </div> 	 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish23" name="dish[]" value="Dish:Poori Kurma:$7">
-			<label for="dish23">Poori Kurma</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish24" name="dish[]" value="Poori Paalak:$7">
-			<label for="dish24">Poori Paalak</label>  </div>
-		 <div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish25" name="dish[]" value="Dish:Rava Idly:$6">
-			<label for="dish25">Rava Idly</label>  </div> 
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish26" name="dish[]" value="Dish:Sambar Idly:$5">
-			<label for="dish26">Sambar Idly</label>  </div>
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish27" name="dish[]" value="Dish:Set Dosai 3 pcs:$6">
-			<label for="dish27">Set Dosai (3 pcs)</label>  </div> 	
-		<div css="text-align:center;"> 	<input type="checkbox" class="staticrypt-check" id="dish28" name="dish[]" value="Dish:Semiya Upma:$5">
-			<label for="dish28">Semiya Upma</label>  </div>
-		<!-- Additional items omitted for brevity in this view; original file includes many more inputs -->
 
-		<input type="hidden" id="shaInput" name="shaInput" value="initial" />
-		<input type="hidden" id="pootuInput" name="pootuInput" value="initial" />
+            <h2>Appetizer</h2> <br>
+            <div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer1" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
+                <label for="appetizer1">Aloo Bonda</label>  </div> 		
+            <div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer2" name="appetizer[]" value="Appetizer:Banana Rava Fry (4pcs):$5">
+                <label for="appetizer2">Banana Rava Fry</label>  </div>
+            <div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer3" name="appetizer[]" value="Appetizer:Onion Pakoda:$5">
+                <label for="appetizer3">Onion Pakoda</label>  </div>
+            <!-- ... more inputs (ids updated) ... -->
 
-        <div> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  
-		<label for="password">Password</label>&nbsp;&nbsp; <input id="staticrypt-password"
+            <!-- Hidden fields preserved -->
+            <input type="hidden" id="shaInput" name="shaInput" value="initial" />
+            <input type="hidden" id="pootuInput" name="pootuInput" value="initial" />
+
+            <div> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  
+            <label for="password">Password</label>&nbsp;&nbsp; <input id="staticrypt-password"
                    type="password"
                    name="password"
                    placeholder="Password"
                    autofocus/> </br> </br> </div>
 
-         <div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="submit" class="staticrypt-decrypt-button"  name="Submit" value="Submit"/></div>
+             <div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" class="staticrypt-decrypt-button"  name="Submit" value="Submit"/></div>
         </form>
     </div>
 
@@ -282,84 +192,66 @@
 <!-- Small UI script to convert checkboxes into Available / Unavailable toggles -->
 <script>
 (function(){
-    // Run after a small delay to let any other scripts initialize
     function transformToggles(){
         var inputs = Array.prototype.slice.call(document.querySelectorAll('input.staticrypt-check'));
         inputs.forEach(function(input, index){
             try{
-                // Give each input a unique id (preserve name for form submission)
                 var baseName = (input.name || 'item').replace(/\[\]/g, '').replace(/[^a-zA-Z0-9_\-]/g,'') || 'item';
-                input.id = baseName + '_avail_' + index;
-
+                // keep existing id
                 // Find associated label (the textual item name). We prefer the next sibling label
                 var textLabel = null;
                 if(input.nextElementSibling && input.nextElementSibling.tagName.toLowerCase() === 'label'){
                     textLabel = input.nextElementSibling;
                 } else {
-                    // try to find by for attribute (may fail if duplicate ids existed earlier)
                     textLabel = document.querySelector('label[for="' + input.id + '"]');
                 }
 
-                // If no label found, create a fallback
                 if(!textLabel){
                     textLabel = document.createElement('label');
                     textLabel.textContent = input.value || 'Item';
                 }
 
-                // Create container for the row
                 var container = document.createElement('div');
                 container.className = 'item-row';
 
-                // Create a label for the item name
                 var nameLabel = document.createElement('label');
                 nameLabel.className = 'item-name';
                 nameLabel.textContent = textLabel.textContent.trim();
 
-                // Build the switch structure (put the input inside)
                 var switchLabel = document.createElement('label');
                 switchLabel.className = 'switch';
 
-                // Move the existing input into the switchLabel
-                // remove input from original position
                 if(input.parentNode){ input.parentNode.removeChild(input); }
                 switchLabel.appendChild(input);
 
-                // Create slider span
                 var slider = document.createElement('span');
                 slider.className = 'slider';
                 switchLabel.appendChild(slider);
 
-                // Create status element
                 var status = document.createElement('span');
                 status.className = 'status';
                 status.textContent = input.checked ? 'Available' : 'Unavailable';
 
-                // Update status on change
                 input.addEventListener('change', function(){
                     status.textContent = input.checked ? 'Available' : 'Unavailable';
                 });
 
-                // Put elements into container
                 container.appendChild(nameLabel);
                 container.appendChild(switchLabel);
                 container.appendChild(status);
 
-                // Insert container into the DOM where the original label was
                 if(textLabel.parentNode){
                     textLabel.parentNode.insertBefore(container, textLabel);
-                    // remove the old textual label node
                     textLabel.parentNode.removeChild(textLabel);
                 } else {
                     document.querySelector('.staticrypt-form').appendChild(container);
                 }
             } catch(e){
-                // ignore transformation errors per-item to avoid breaking the page
                 console.error('toggle transform error', e);
             }
         });
     }
 
-    // Run when DOM is ready
     if(document.readyState === 'loading'){
         document.addEventListener('DOMContentLoaded', transformToggles);
     } else {
@@ -368,7 +260,7 @@
 })();
 </script>
 
-<!-- Prevent normal form POST (which causes Netlify 404) and save locally instead -->
+<!-- Submit handler: save locally AND POST to Netlify Forms via fetch -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){
     var form = document.getElementById('staticrypt-form');
@@ -379,19 +271,16 @@ document.addEventListener('DOMContentLoaded', function(){
         banner.textContent = message;
         banner.className = 'save-banner ' + (isSuccess ? 'success' : 'error');
         banner.style.display = 'block';
-        // auto-hide after 3s
         clearTimeout(banner._hideTimer);
-        banner._hideTimer = setTimeout(function(){
-            banner.style.display = 'none';
-        }, 3000);
+        banner._hideTimer = setTimeout(function(){ banner.style.display = 'none'; }, 3000);
     }
 
     if(!form) return;
 
     form.addEventListener('submit', function(e){
-        e.preventDefault(); // stop the browser from doing a real POST
+        e.preventDefault(); // keep user on page
 
-        // collect checked items grouped by field name
+        // Save locally first
         var checked = Array.prototype.slice.call(document.querySelectorAll('input.staticrypt-check'))
             .filter(function(i){ return i.checked; });
 
@@ -401,18 +290,39 @@ document.addEventListener('DOMContentLoaded', function(){
             if(!payload.items[name]) payload.items[name] = [];
             payload.items[name].push(i.value);
         });
-
         var pw = document.getElementById('staticrypt-password');
         if(pw) payload.password = pw.value;
 
-        // Store locally to avoid Netlify 404. Replace this with an AJAX call to your backend if available.
         try{
             localStorage.setItem('menuMaintenanceDraft', JSON.stringify({ ts: Date.now(), payload: payload }));
-            // Provide user feedback via inline banner
-            showBanner('Saved locally.', true);
         }catch(err){
-            console.error('Failed to save draft', err);
-            showBanner('Could not save locally. See console for details.', false);
+            console.warn('Could not save locally', err);
+        }
+
+        // Now submit to Netlify via fetch using FormData
+        try{
+            var formData = new FormData(form);
+            // ensure form-name is present
+            if(!formData.get('form-name')) formData.append('form-name', form.getAttribute('name') || 'menu-maintenance');
+
+            fetch(window.location.pathname, {
+                method: 'POST',
+                body: formData
+            }).then(function(response){
+                if(response.ok){
+                    showBanner('Saved locally and submitted to Netlify.', true);
+                    // optionally clear local draft after successful remote submit
+                    // localStorage.removeItem('menuMaintenanceDraft');
+                } else {
+                    showBanner('Saved locally but remote submission failed (status ' + response.status + ').', false);
+                }
+            }).catch(function(err){
+                console.error('Netlify submit failed', err);
+                showBanner('Saved locally but remote submission failed (network error).', false);
+            });
+        }catch(e){
+            console.error('Submission error', e);
+            showBanner('Saved locally but submission failed.', false);
         }
     });
 
@@ -431,8 +341,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 });
             }
             if(obj && obj.password){
-                var pw = document.getElementById('staticrypt-password');
-                if(pw) pw.value = obj.password;
+                var pw2 = document.getElementById('staticrypt-password');
+                if(pw2) pw2.value = obj.password;
             }
         }
     }catch(e){

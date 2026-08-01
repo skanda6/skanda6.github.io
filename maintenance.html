@@ -23,15 +23,6 @@
         .menu-controls { width:200px; text-align:right; }
         h2 { margin-top:18px; }
         label.item-label { font-weight:500; }
-
-        /* Toggle switch styles */
-        .switch { position: relative; display: inline-block; width: 52px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #4CAF50; }
-        input:checked + .slider:before { transform: translateX(24px); }
-        .toggle-text { display: inline-block; width: 44px; text-align: center; font-size: 12px; margin-left: 8px; vertical-align: middle; }
     </style>
 </head>
 <body class="staticrypt-body">
@@ -86,16 +77,6 @@ const menu = [
   ]}
 ];
 
-function nameForSection(section) {
-  if (section === 'Rice Dish Items') return 'riceDish[]';
-  if (section === 'Dish Items') return 'dish[]';
-  if (section === 'Extra Items') return 'extra[]';
-  if (section === 'Drinks') return 'drinks[]';
-  if (section === 'Appetizer') return 'appetizer[]';
-  if (section === 'Desserts') return 'desserts[]';
-  return 'items[]';
-}
-
 function buildMenu() {
   const container = document.getElementById('menu-container');
   menu.forEach(section => {
@@ -125,37 +106,23 @@ function buildMenu() {
       const controls = document.createElement('div');
       controls.className = 'menu-controls';
 
-      // create an On/Off toggle representing Available / Unavailable
-      const toggleWrapper = document.createElement('span');
-      const toggleLabel = document.createElement('label');
-      toggleLabel.className = 'switch';
+      // create a select representing Available / Unavailable
+      const select = document.createElement('select');
+      select.className = 'staticrypt-check';
+      select.name = (section.section === 'Rice Dish Items') ? 'riceDish[]' : section.section === 'Dish Items' ? 'dish[]' : section.section === 'Extra Items' ? 'extra[]' : section.section === 'Drinks' [...]
 
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.className = 'staticrypt-toggle';
-      checkbox.checked = true; // default to On (Available)
-      checkbox.setAttribute('data-item', item);
-      checkbox.setAttribute('data-name', nameForSection(section.section));
-      checkbox.setAttribute('aria-label', label.textContent + ' availability');
+      // value options include availability + original item string so backend can parse
+      const optAv = document.createElement('option');
+      optAv.value = 'Available:' + item;
+      optAv.text = 'Available';
+      const optUn = document.createElement('option');
+      optUn.value = 'Unavailable:' + item;
+      optUn.text = 'Unavailable';
 
-      const slider = document.createElement('span');
-      slider.className = 'slider';
+      select.appendChild(optAv);
+      select.appendChild(optUn);
 
-      toggleLabel.appendChild(checkbox);
-      toggleLabel.appendChild(slider);
-
-      const toggleText = document.createElement('span');
-      toggleText.className = 'toggle-text';
-      toggleText.textContent = checkbox.checked ? 'On' : 'Off';
-
-      // update toggle text on change
-      checkbox.addEventListener('change', function () {
-        toggleText.textContent = this.checked ? 'On' : 'Off';
-      });
-
-      toggleWrapper.appendChild(toggleLabel);
-      toggleWrapper.appendChild(toggleText);
-      controls.appendChild(toggleWrapper);
+      controls.appendChild(select);
       row.appendChild(controls);
 
       container.appendChild(row);
@@ -166,17 +133,14 @@ function buildMenu() {
 // Build menu on load
 document.addEventListener('DOMContentLoaded', buildMenu);
 
-// Submit handler: collects toggle states and logs them (adapt to your save flow)
+// Example submit handler: collects selections and logs them (you can adapt to your save flow)
 document.getElementById('menu-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const data = {};
-  const toggles = document.querySelectorAll('.staticrypt-toggle');
-  toggles.forEach(t => {
-    const name = t.getAttribute('data-name') || 'items[]';
-    const item = t.getAttribute('data-item');
-    if (!data[name]) data[name] = [];
-    const val = (t.checked ? 'Available:' : 'Unavailable:') + item;
-    data[name].push(val);
+  const selects = document.querySelectorAll('.staticrypt-check');
+  selects.forEach(s => {
+    if (!data[s.name]) data[s.name] = [];
+    data[s.name].push(s.value);
   });
   console.log('Collected menu availability:', data);
   alert('Menu availability collected (see console).');

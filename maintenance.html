@@ -134,6 +134,11 @@
         .switch input:checked + .slider:before { transform: translateX(26px); }
         .status { margin-left:10px; min-width:90px; text-align:left; font-weight:600; }
 
+        /* Inline save banner */
+        .save-banner { display:none; position:relative; padding:10px 14px; border-radius:4px; margin-bottom:12px; font-weight:600; }
+        .save-banner.success { background:#e6f6ea; color:#1a7f3a; border:1px solid #bfe8c8; }
+        .save-banner.error { background:#fdecea; color:#8b1a1a; border:1px solid #f2c2c2; }
+
     </style>
 </head>
 
@@ -147,6 +152,8 @@
         <hr class="staticrypt-hr"> 
         <!-- Single form element -->
         <form id="staticrypt-form" onsubmit="return false;" method="post">
+            <!-- inline banner placeholder -->
+            <div id="saveBanner" class="save-banner" role="status" aria-live="polite"></div>
 		<h2>Appetizer</h2> <br>
 		<div css="text-align:right;"> 	<input type="checkbox" class="staticrypt-check" id="appetizer" name="appetizer[]" value="Appetizer:Aloo Bonda:$6">
 			<label for="appetizer">Aloo Bonda</label>  </div> 		
@@ -365,6 +372,20 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
     var form = document.getElementById('staticrypt-form');
+    var banner = document.getElementById('saveBanner');
+
+    function showBanner(message, isSuccess){
+        if(!banner) return;
+        banner.textContent = message;
+        banner.className = 'save-banner ' + (isSuccess ? 'success' : 'error');
+        banner.style.display = 'block';
+        // auto-hide after 3s
+        clearTimeout(banner._hideTimer);
+        banner._hideTimer = setTimeout(function(){
+            banner.style.display = 'none';
+        }, 3000);
+    }
+
     if(!form) return;
 
     form.addEventListener('submit', function(e){
@@ -387,11 +408,11 @@ document.addEventListener('DOMContentLoaded', function(){
         // Store locally to avoid Netlify 404. Replace this with an AJAX call to your backend if available.
         try{
             localStorage.setItem('menuMaintenanceDraft', JSON.stringify({ ts: Date.now(), payload: payload }));
-            // Provide user feedback
-            alert('Saved locally. No page navigation occurred.');
+            // Provide user feedback via inline banner
+            showBanner('Saved locally.', true);
         }catch(err){
             console.error('Failed to save draft', err);
-            alert('Could not save locally. See console for details.');
+            showBanner('Could not save locally. See console for details.', false);
         }
     });
 
